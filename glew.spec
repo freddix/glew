@@ -1,11 +1,11 @@
 Summary:	The OpenGL Extension Wrangler Library
 Name:		glew
-Version:	1.8.0
+Version:	1.9.0
 Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/glew/%{name}-%{version}.tgz
-# Source0-md5:	07c47ad0253e5d9c291448f1216c8732
+# Source0-md5:	69ce911decef6249d24742497e6ad06a
 URL:		http://glew.sourceforge.net/
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	xorg-libXi-devel
@@ -40,11 +40,12 @@ cp -f %{_datadir}/automake/config.guess config
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_libdir},%{_bindir},%{_includedir}/GL}
+install -d $RPM_BUILD_ROOT{%{_libdir},%{_bindir},%{_includedir}/GL,%{_pkgconfigdir}}
 
 install bin/* $RPM_BUILD_ROOT%{_bindir}
 cp -d lib/* $RPM_BUILD_ROOT%{_libdir}
 install include/GL/* $RPM_BUILD_ROOT%{_includedir}/GL
+install glew.pc glewmx.pc $RPM_BUILD_ROOT%{_pkgconfigdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -63,4 +64,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libGLEW*.so
 %{_includedir}/GL/*.h
+%{_pkgconfigdir}/*.pc
 
